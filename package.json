@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
+    "@mui/material": "^5.10.11",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "create-react-component-folder": "^0.3.7",
