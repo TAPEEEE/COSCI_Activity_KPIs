@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import './App.css';
+import RegisterPages from './pages/RegisterPages';
 import AdminAddActivity from './pages/AdminAddActivity';
-import AdminCRUD from './pages/AdminCRUD';
+import AdminActivityDashboard from './pages/AdminActivityDashboard';
+import AdminRequestDashboard from './pages/AdminRequestDashboard';
+import AdminUserCRUD from './pages/AdminUserCRUD';
+import AdminUploadFile from './pages/AdminUploadFile';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminNavbar from './components/AdminNavbar';
 import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPages from './pages/LoginPages';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,12 +21,29 @@ function App() {
         <AdminNavbar />
         <Routes>
           <Route path="/" element={<AdminDashboard />}></Route>
+          <Route path="/login" element={<LoginPages />}></Route>
+          <Route path="/register" element={<RegisterPages />}></Route>
           <Route
             path="/admin-add-activity"
             element={<AdminAddActivity />}
           ></Route>
-          <Route path="/admin-usermanage" element={<AdminCRUD />}></Route>
-          <Route path="/" element={<AdminAddActivity />}></Route>
+          <Route path="/admin-user-crud" element={<AdminUserCRUD />}></Route>
+          <Route
+            path="/admin-add-activity"
+            element={<AdminAddActivity />}
+          ></Route>
+          <Route
+            path="/admin-activity-dashboard"
+            element={<AdminActivityDashboard />}
+          ></Route>
+          <Route
+            path="/admin-request-dashboard"
+            element={<AdminRequestDashboard />}
+          ></Route>
+          <Route
+            path="/admin-user-upload"
+            element={<AdminUploadFile />}
+          ></Route>
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
