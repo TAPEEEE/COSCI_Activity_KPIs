@@ -39,7 +39,7 @@ const CardData = [
 // interface DashboardStatProps {
 //   title: string;
 //   count: number;
-//   icon: any;
+//   icon: React.ReactNode;
 //   color: string;
 // }
 

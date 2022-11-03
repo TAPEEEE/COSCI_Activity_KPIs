@@ -1,7 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, SetStateAction, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import AddActivity from '../../components/AddActivity';
+import { ActivityProps } from '../../interface/ActivityProps';
 
 type AdminAddActivityProps = {
   //
