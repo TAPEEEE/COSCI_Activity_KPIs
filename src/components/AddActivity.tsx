@@ -7,23 +7,33 @@ import {
   MouseEvent,
 } from 'react';
 import '../assets/css/Components.css';
-import { NavLink } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import alertSuccess from '../utils/addActivitySuccess';
 import alertError from '../utils/addActivityError';
+import { useNavigate } from 'react-router-dom';
+import { date } from 'yup';
 
 const AddActivity: FC = () => {
+  let navigate = useNavigate();
+  function handleLink() {
+    navigate('/admin-activity-dashboard');
+  }
   let closeTextfield = 'bg-gray-300';
   const [placeholder, setPlaceholder] = useState(
     'เฉพาะหมวดบำเพ็ญสาธารณประโยชน์',
   );
   const [isDisabled, setIsDisabled] = useState(true);
   const [name_event, setName_event] = useState<String>('');
-  const [event_type, setEvent_type] = useState<String>('');
+  const [event_type, setEvent_type] = useState<String>('กิจกรรมบังคับ');
+  const [detail_event, setDetail_event] = useState<String>('');
+  const [posted_timestamp, setPosted_timestamp] = useState(Date.now());
+  const [event_img, setEvent_img] = useState<String>('imgactivity.png');
+  const [event_status, setEvent_status] = useState<Boolean>(true);
+  const [permissions_type, setPermissions_type] = useState<String>('student');
   const [start_date, setStart_date] = useState(new Date());
   const [end_date, setEnd_date] = useState<string | undefined>('');
-  const [activity_hour, setActivity_hour] = useState<string>();
+  const [activity_hour, setActivity_hour] = useState<string>('1');
 
   function checkActivityCat(input: string) {
     if (input == 'กิจกรรมบำเพ็ญสาธารณประโยชน์') {
@@ -41,6 +51,10 @@ const AddActivity: FC = () => {
     setName_event(event.target.value);
   };
 
+  const setEevntDetailHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setDetail_event(event.target.value);
+  };
+
   const setEventTypeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setEvent_type(event.target.value);
     checkActivityCat(event.target.value);
@@ -55,24 +69,32 @@ const AddActivity: FC = () => {
   function clearData() {
     setName_event('');
     setEvent_type('');
+    setActivity_hour('1');
     setEnd_date(undefined);
   }
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (!name_event && !event_type) {
+    if (!name_event || !event_type || !end_date || !activity_hour) {
       alertError();
       return;
     }
+
     const addEventData = {
       name_event,
-      event_type,
+      detail_event,
       start_date,
       end_date,
+      posted_timestamp,
+      event_type,
+      event_img,
       activity_hour,
+      event_status,
+      permissions_type,
     };
-    console.log(addEventData);
+    console.log(JSON.stringify(addEventData, undefined, 4));
     clearData();
     alertSuccess();
+    handleLink();
   };
 
   function clearForm() {
@@ -140,10 +162,12 @@ const AddActivity: FC = () => {
               className="w-full form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:border-2 focus:outline-none"
               onChange={setEventTypeHandler}
             >
-              <option selected disabled hidden>
+              {/* <option selected disabled hidden>
                 เลือกหมวดกิจกรรม
+              </option> */}
+              <option value="กิจกรรมบังคับ" selected>
+                กิจกรรมบังคับ
               </option>
-              <option value="กิจกรรมบังคับ">กิจกรรมบังคับ</option>
               <option value="กิจกรรมเลือก">กิจกรรมเลือก</option>
               <option value="กิจกรรมบำเพ็ญสาธารณประโยชน์">
                 กิจกรรมบำเพ็ญสาธารณประโยชน์
@@ -196,6 +220,7 @@ const AddActivity: FC = () => {
         <div className="form-group mb-24">
           <h3 className="mb-1 text-md">รายละเอียดกิจกรรม</h3>
           <textarea
+            onChange={setEevntDetailHandler}
             rows="4"
             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:border-2 focus:outline-none"
             placeholder="รายละเอียดกิจกรรม"
