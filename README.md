@@ -1,4 +1,4 @@
 # COSCI_Activity_KPIs
 
-
-## yarn run dev
+* yarn install
+* yarn run dev
