@@ -6,6 +6,7 @@ import {
   useState,
   MouseEvent,
 } from 'react';
+
 import '../assets/css/Components.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -146,7 +147,6 @@ const AddActivity: FC = () => {
         <div className="form-group mb-5">
           <input
             name="activityTitle"
-            value={name_event}
             onChange={setEevntNameHandler}
             type="text"
             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:border-2 focus:outline-none"
