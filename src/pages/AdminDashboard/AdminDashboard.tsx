@@ -30,7 +30,13 @@ const AdminDashboard: React.FC<any> = () => {
             กิจกรรมล่าสุด
           </h1>
           <div className="mx-5 my-5">
-            <AdminActivityTable />
+            <AdminActivityTable
+              name_event={''}
+              start_date={''}
+              end_date={''}
+              event_type={''}
+              event_img={''}
+            />
           </div>
         </div>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
@@ -38,7 +44,13 @@ const AdminDashboard: React.FC<any> = () => {
             คำร้องล่าสุด
           </h1>
           <div className="mx-5 my-5">
-            <AdminActivityTable />
+            <AdminActivityTable
+              name_event={''}
+              start_date={''}
+              end_date={''}
+              event_type={''}
+              event_img={''}
+            />
           </div>
         </div>
         <div className="mt-28">

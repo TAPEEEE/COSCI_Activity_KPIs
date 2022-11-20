@@ -85,15 +85,6 @@ const AdminActivityDashboard: React.FC<any> = () => {
               <h1 className="text-[28px] font-medium tracking-tight text-gray-900">
                 จัดการกิจกรรม
               </h1>
-              {/* <div className="mt-5 flex lg:mt-0 lg:ml-4">
-                <button
-                  onClick={handleClick}
-                  type="button"
-                  className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2"
-                >
-                  เพิ่มกิจกรรม
-                </button>
-              </div> */}
             </div>
           </div>
         </header>
@@ -114,7 +105,6 @@ const AdminActivityDashboard: React.FC<any> = () => {
             </div>
 
             <div className="mx-5 my-5">
-              {/* <AdminActivityTable /> */}
               <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
@@ -162,47 +152,13 @@ const AdminActivityDashboard: React.FC<any> = () => {
                         </thead>
                         <tbody>
                           {data1.map((item) => (
-                            <tr
-                              className="bg-gray-100 border-b"
-                              key={item.name_event}
-                            >
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <img
-                                  src="https://cdn.discordapp.com/attachments/789137436562685973/1037022084360048670/Component_12.png"
-                                  className="p-1 rounded w-max"
-                                  alt="..."
-                                />
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {item.name_event}
-                              </td>
-
-                              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.event_type}
-                              </td>
-                              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {moment(item.start_date).format('ll h:mma')}
-                              </td>
-                              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {moment(item.end_date).format('ll h:mma')}
-                              </td>
-                              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <button
-                                  onClick={handleClick}
-                                  type="button"
-                                  className="mr-2 font-Kanit mt-4 mb-4 inline-flex items-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2"
-                                >
-                                  แก้ไข
-                                </button>
-                                <button
-                                  onClick={handleClick}
-                                  type="button"
-                                  className="font-Kanit mt-4 mb-4 inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2"
-                                >
-                                  ลบ
-                                </button>
-                              </td>
-                            </tr>
+                            <AdminActivityTable
+                              name_event={item.name_event}
+                              start_date={item.start_date}
+                              end_date={item.end_date}
+                              event_type={item.event_type}
+                              event_img={item.event_img}
+                            />
                           ))}
                         </tbody>
                       </table>
@@ -227,11 +183,70 @@ const AdminActivityDashboard: React.FC<any> = () => {
             </div>
 
             <div className="mx-5 my-5">
-              <AdminActivityTable />
+              <div className="flex flex-col">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
+                    <div className="overflow-hidden rounded-lg">
+                      <table className="min-w-full text-center">
+                        <thead className="border-b bg-gray-800">
+                          <tr>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              รูปภาพ
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              ชื่อกิจกรรม
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              ประเภทกิจกรรม
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              เวลาเริ่มกิจกรรม
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              เวลาจบกิจกรรม
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-white px-6 py-4"
+                            >
+                              จัดการกิจกรรม
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {data1.map((item) => (
+                            <AdminActivityTable
+                              name_event={item.name_event}
+                              start_date={item.start_date}
+                              end_date={item.end_date}
+                              event_type={item.event_type}
+                              event_img={item.event_img}
+                            />
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
         <div className="mt-28">
           <Footer />
         </div>
