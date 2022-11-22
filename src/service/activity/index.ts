@@ -1,0 +1,1 @@
+export { getActivityList } from './getActivityList';

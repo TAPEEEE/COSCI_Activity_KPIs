@@ -24,11 +24,11 @@ const AddActivity: FC = () => {
   const [placeholder, setPlaceholder] = useState(
     'เฉพาะหมวดบำเพ็ญสาธารณประโยชน์',
   );
-  const [isDisabled, setIsDisabled] = useState(true);
   const [name_event, setName_event] = useState<String>('');
-  const [event_type, setEvent_type] = useState<String>('กิจกรรมบังคับ');
   const [detail_event, setDetail_event] = useState<String>('');
+  const [event_type, setEvent_type] = useState<String>('กิจกรรมบังคับ');
   const [posted_timestamp, setPosted_timestamp] = useState(Date.now());
+  const [isDisabled, setIsDisabled] = useState(true);
   const [event_img, setEvent_img] = useState<String>('imgactivity.png');
   const [event_status, setEvent_status] = useState<Boolean>(true);
   const [permissions_type, setPermissions_type] = useState<String>('student');
@@ -162,9 +162,6 @@ const AddActivity: FC = () => {
               className="w-full form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:border-2 focus:outline-none"
               onChange={setEventTypeHandler}
             >
-              {/* <option selected disabled hidden>
-                เลือกหมวดกิจกรรม
-              </option> */}
               <option value="กิจกรรมบังคับ" selected>
                 กิจกรรมบังคับ
               </option>
@@ -250,6 +247,3 @@ const AddActivity: FC = () => {
 };
 
 export default memo(AddActivity);
-function setEndDate(arg0: null) {
-  throw new Error('Function not implemented.');
-}

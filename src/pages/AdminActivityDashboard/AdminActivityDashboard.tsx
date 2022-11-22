@@ -1,80 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo, FC } from 'react';
 import AdminActivityTable from '../../components/AdminActivityTable';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer';
-import axios from 'axios';
-import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { getActivityList } from '../../store/activityList/selector';
+import { fetchActivityList } from '../../store/activityList/thunk';
+import { useMountEffect } from '../../hooks';
 
 type AdminActivityDashboardProps = {
   //
 };
 
-const data1 = [
-  {
-    name_event: 'ลอยกระทง',
-    detail_event: 'งานวันลอยกระทง งานวันลอยกระทง งานวันลอยกระทง งานวันลอยกระทง',
-    start_date: '2022-11-09T19:13:59.408Z',
-    end_date: '2022-11-09T18:30:00.000Z',
-    posted_timestamp: 1668021239408,
-    event_type: 'กิจกรรมเลือก',
-    event_img: 'imgactivity.png',
-    activity_hour: '1',
-    event_status: true,
-    permissions_type: 'student',
-  },
-  {
-    name_event: 'COSCI OpenHouse',
-    detail_event: 'COSCI OpenHouse COSCI OpenHouse COSCI OpenHouse ',
-    start_date: '2022-11-09T19:17:43.528Z',
-    end_date: '2022-11-17T19:00:00.000Z',
-    posted_timestamp: 1668021463528,
-    event_type: 'กิจกรรมบำเพ็ญสาธารณประโยชน์',
-    event_img: 'imgactivity.png',
-    activity_hour: '25',
-    event_status: true,
-    permissions_type: 'student',
-  },
-];
-
-interface KPIProps {
-  name_event: string;
-  detail_event: string;
-  start_date: undefined;
-  end_date: undefined;
-  posted_timestamp: undefined;
-  event_type: string;
-  event_img: string;
-  activity_hour: number;
-  event_status: boolean;
-  permissions_type: string;
-}
-
-const AdminActivityDashboard: React.FC<any> = () => {
+const AdminActivityDashboard: FC = () => {
   let navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const activityListData = useSelector(getActivityList);
+
+  useMountEffect(() => {
+    dispatch(fetchActivityList());
+  });
+
   function handleClick() {
     navigate('/admin-add-activity');
   }
-
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: response } = await axios.get(
-          'http://localhost:8081/api/admin/admin-kpi-dashboard',
-        );
-        setData(response.data.kpi);
-      } catch (error) {
-        console.error('Error');
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(data);
 
   return (
     <>
@@ -151,13 +100,21 @@ const AdminActivityDashboard: React.FC<any> = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {data1.map((item) => (
+                          {/* {loading
+                            ? 'Loading...'
+                            : error
+                            ? error.message
+                            : activity.users.kpi.map((item) => <h3>{item.name}</h3>)} */}
+
+                          {activityListData.map((item) => (
                             <AdminActivityTable
                               name_event={item.name_event}
                               start_date={item.start_date}
                               end_date={item.end_date}
                               event_type={item.event_type}
                               event_img={item.event_img}
+                              posted_timestamp={''}
+                              event_status={true}
                             />
                           ))}
                         </tbody>
@@ -228,17 +185,7 @@ const AdminActivityDashboard: React.FC<any> = () => {
                             </th>
                           </tr>
                         </thead>
-                        <tbody>
-                          {data1.map((item) => (
-                            <AdminActivityTable
-                              name_event={item.name_event}
-                              start_date={item.start_date}
-                              end_date={item.end_date}
-                              event_type={item.event_type}
-                              event_img={item.event_img}
-                            />
-                          ))}
-                        </tbody>
+                        <tbody></tbody>
                       </table>
                     </div>
                   </div>
@@ -255,4 +202,4 @@ const AdminActivityDashboard: React.FC<any> = () => {
   );
 };
 
-export default AdminActivityDashboard;
+export default memo(AdminActivityDashboard);

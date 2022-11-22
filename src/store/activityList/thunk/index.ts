@@ -1,0 +1,1 @@
+export { fetchActivityList } from './fetchActivityList';
