@@ -1,11 +1,12 @@
 import React, { FC, memo } from 'react';
 
+// -[#005076]
 const Footer: FC = () => {
   return (
-    <footer className="p-4 sm:p-6 bg-[#005076] font-Kanit">
+    <footer className="p-4 sm:p-6 bg-[#000] font-Kanit">
       <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
+          <div className="mb-6 md:mb-0 ml-5">
             <a className="flex items-center">
               <img
                 src="http://cosci.swu.ac.th/img/logo.svg"
@@ -14,7 +15,7 @@ const Footer: FC = () => {
               />
             </a>
           </div>
-          <div className="row contact-box text-white">
+          <div className="row contact-box text-white ml-5">
             <div className="col-lg-12">
               <i className="fa fa-asterisk"></i>ติดต่อสอบถาม
               <i className="fa fa-asterisk"></i>
@@ -27,7 +28,11 @@ const Footer: FC = () => {
               <u>ติดต่อในวันเวลาราชการ</u> &nbsp;
               <span className="nextlineSM">
                 วันจันทร์ถึงศุกร์ เวลา 08:30น. - 16:30น.
-                (ยกเว้นวันหยุดนักขัตฤกษ์) โทร 02-649-5000 ต่อ 11268{' '}
+              </span>
+            </div>
+            <div className="col-lg-12">
+              <span className="nextlineSM">
+                (ยกเว้นวันหยุดนักขัตฤกษ์) โทร 02-649-5000 ต่อ 11268
               </span>
             </div>
           </div>

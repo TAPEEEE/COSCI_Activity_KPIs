@@ -16,25 +16,25 @@ const AdminActivityTable: FC<ActivityProps> = (props) => {
 
   return (
     <tr className="bg-gray-100 border-b" key={name_event}>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+      <td className="px-3 py-4 text-sm font-medium text-gray-900">
         <img
           src={`http://localhost:8081/public/uploaded/` + event_img}
           className="p-1 rounded w-max"
           alt="..."
         />
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+      <td className="px-6 py-4  text-md font-medium text-gray-900">
         {name_event}
       </td>
 
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {event_type}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {moment(start_date).format('ll h:mma')}
+        {moment(start_date).format('ll')}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {moment(end_date).format('ll h:mma')}
+        {moment(end_date).format('ll')}
       </td>
 
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">

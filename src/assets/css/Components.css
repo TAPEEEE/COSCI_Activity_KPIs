@@ -11,3 +11,18 @@
 .swal2-container {
   font-family: 'Kanit', sans-serif;
 }
+
+.row-light {
+  background-color: #b6c5f5;
+}
+
+.row-dark {
+  background-color: #84eb84;
+}
+
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+  background: unset;
+}

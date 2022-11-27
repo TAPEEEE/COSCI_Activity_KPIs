@@ -17,7 +17,7 @@ export const fetchActivityList = (): ThunkAction<
       const response = await getActivityList();
       console.log(response);
       if (response.status === 200) {
-        dispatch(updateActivityList(response.data.data.kpi));
+        dispatch(updateActivityList(response.data.data.data));
       }
     } catch (error) {
       dispatch(updateActivityList([]));
@@ -25,3 +25,9 @@ export const fetchActivityList = (): ThunkAction<
     }
   };
 };
+
+
+
+
+
+

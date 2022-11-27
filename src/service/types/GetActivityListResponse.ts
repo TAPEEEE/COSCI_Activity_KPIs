@@ -11,7 +11,7 @@ export interface ActivityData {
 // }
 
 export interface ActivityListResponseData {
-  kpi: ActivityData[];
+  data: ActivityData[];
 }
 
 export interface ActivityList {

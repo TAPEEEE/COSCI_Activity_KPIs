@@ -36,6 +36,8 @@ const AdminDashboard: React.FC<any> = () => {
               end_date={''}
               event_type={''}
               event_img={''}
+              posted_timestamp={''}
+              event_status={false}
             />
           </div>
         </div>
@@ -50,6 +52,8 @@ const AdminDashboard: React.FC<any> = () => {
               end_date={''}
               event_type={''}
               event_img={''}
+              posted_timestamp={''}
+              event_status={false}
             />
           </div>
         </div>

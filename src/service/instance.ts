@@ -7,10 +7,12 @@ export const instance = axios.create({
 //เป็นตัวกลางของ axios request
 instance.interceptors.request.use(
   (config) => {
-    let customHeader: { [key: string]: string } = { 'Content-Type': 'application/json' };
+    let customHeader: { [key: string]: string } = {
+      'Content-Type': 'application/json',
+    };
     //get token from localS
     customHeader = { ...customHeader, Authorization: 'bearer token' };
-    
+
     // eslint-disable-next-line no-param-reassign
     config.url = `${config.url}`;
     // eslint-disable-next-line no-param-reassign

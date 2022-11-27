@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getActivityList } from '../../store/activityList/selector';
 import { fetchActivityList } from '../../store/activityList/thunk';
 import { useMountEffect } from '../../hooks';
+import TableCompo from '../../components/TableCompo';
+import ActivityStatCard from '../../components/ActivityStatCard';
 
 type AdminActivityDashboardProps = {
   //
@@ -37,6 +39,9 @@ const AdminActivityDashboard: FC = () => {
             </div>
           </div>
         </header>
+        <div className="mx-auto max-w-7xl my-5">
+          <ActivityStatCard />
+        </div>
 
         <div className="mx-3">
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
@@ -58,67 +63,7 @@ const AdminActivityDashboard: FC = () => {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div className="overflow-hidden rounded-lg">
-                      <table className="min-w-full text-center">
-                        <thead className="border-b bg-gray-800">
-                          <tr>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              รูปภาพ
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              ชื่อกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              ประเภทกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              เวลาเริ่มกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              เวลาจบกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              จัดการกิจกรรม
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {/* {loading
-                            ? 'Loading...'
-                            : error
-                            ? error.message
-                            : activity.users.kpi.map((item) => <h3>{item.name}</h3>)} */}
-
-                          {activityListData.map((item) => (
-                            <AdminActivityTable
-                              name_event={item.name_event}
-                              start_date={item.start_date}
-                              end_date={item.end_date}
-                              event_type={item.event_type}
-                              event_img={item.event_img}
-                              posted_timestamp={''}
-                              event_status={true}
-                            />
-                          ))}
-                        </tbody>
-                      </table>
+                      <TableCompo />
                     </div>
                   </div>
                 </div>
