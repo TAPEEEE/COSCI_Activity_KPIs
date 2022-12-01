@@ -1,31 +1,38 @@
 import { FC, memo } from 'react';
-import '../assets/css/Components.css';
+import '../../assets/css/Components.css';
 import { NavLink } from 'react-router-dom';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PersonIcon from '@mui/icons-material/Person';
-import { getCurrentDate } from '../utils/getCurrentDate';
+import { getCurrentDate } from '../../utils/getCurrentDate';
 const CardData = [
   {
-    title: 'กิจกรรมเลือก',
+    title: 'คำร้องนิสิต',
     count: 108,
     icon: <DescriptionIcon />,
     color: 'bg-green-500',
     href: '/admin-request-dashboard',
   },
   {
-    title: 'กิจกรรมบังคับ',
+    title: 'คำร้องบุคลากร',
     count: 16,
     icon: <DescriptionIcon />,
     color: 'bg-red-500',
     href: '/admin-request-dashboard',
   },
   {
-    title: 'บำเพ็ญประโยชน์',
+    title: 'กิจกรรมทั้งหมด',
     count: 14,
     icon: <CalendarMonthIcon />,
     color: 'bg-amber-500',
     href: '/admin-activity-dashboard',
+  },
+  {
+    title: 'ผู้ใช้ทั้งหมด',
+    count: 695,
+    icon: <PersonIcon />,
+    color: 'bg-sky-600',
+    href: '/admin-user-crud',
   },
 ];
 
@@ -36,7 +43,7 @@ const CardData = [
 //   color: string;
 // }
 
-const ActivityStatCard: FC = () => {
+const DashboardStatCard: FC = () => {
   return (
     <div className="flex flex-wrap">
       {CardData.map((item) => (
@@ -102,4 +109,4 @@ const ActivityStatCard: FC = () => {
   );
 };
 
-export default memo(ActivityStatCard);
+export default memo(DashboardStatCard);

@@ -1,7 +1,8 @@
 import React from 'react';
 import Footer from '../../components/Footer';
-import TableCompo from '../../components/TableCompo';
+import TableCompo from '../../components/admin/ActivityTable';
 import { useNavigate } from 'react-router-dom';
+import RequestTable from '../../components/admin/RequestTable';
 
 type AdminRequestDashboardProps = {
   //
@@ -52,7 +53,7 @@ const AdminRequestDashboard: React.FC<any> = () => {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div className="overflow-hidden rounded-lg">
-                      <TableCompo />
+                      <RequestTable />
                     </div>
                   </div>
                 </div>

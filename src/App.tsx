@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import LoginPages from './pages/LoginPages';
 import RegisterPages from './pages/RegisterPages';
 import AdminAddActivity from './pages/AdminAddActivity';
 import AdminActivityDashboard from './pages/AdminActivityDashboard';
@@ -7,14 +8,11 @@ import AdminRequestDashboard from './pages/AdminRequestDashboard';
 import AdminUserCRUD from './pages/AdminUserCRUD';
 import AdminUploadFile from './pages/AdminUploadFile';
 import AdminDashboard from './pages/AdminDashboard';
-import AdminNavbar from './components/AdminNavbar';
+import AdminNavbar from './components/admin/AdminNavbar';
 import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginPages from './pages/LoginPages';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <BrowserRouter>

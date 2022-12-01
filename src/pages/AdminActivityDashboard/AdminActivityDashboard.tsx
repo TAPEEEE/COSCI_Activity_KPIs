@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getActivityList } from '../../store/activityList/selector';
 import { fetchActivityList } from '../../store/activityList/thunk';
 import { useMountEffect } from '../../hooks';
-import TableCompo from '../../components/TableCompo';
-import ActivityStatCard from '../../components/ActivityStatCard';
+import ActivityTable from '../../components/admin/ActivityTable';
+import ActivityStatCard from '../../components/admin/ActivityStatCard';
+import KPITable from '../../components/admin/KPITable';
 
 type AdminActivityDashboardProps = {
   //
@@ -47,7 +48,7 @@ const AdminActivityDashboard: FC = () => {
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
             <div className="flex justify-between">
               <h1 className="font-Kanit font-medium text-2xl mx-5 my-5">
-                กิจกรรมล่าสุด
+                กิจกรรมนิสิต
               </h1>
               <button
                 onClick={handleClick}
@@ -63,22 +64,23 @@ const AdminActivityDashboard: FC = () => {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div className="overflow-hidden rounded-lg">
-                      <TableCompo />
+                      <ActivityTable />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
             <div className="flex justify-between">
               <h1 className="font-Kanit font-medium text-2xl mx-5 my-5">
-                กิจกรรมล่าสุด
+                กิจกรรมบุคลากร
               </h1>
               <button
                 onClick={handleClick}
                 type="button"
-                className="font-Kanit mt-4 mb-4 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2"
+                className="font-Kanit mt-4 mb-4 mr-4 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2"
               >
                 เพิ่มกิจกรรม
               </button>
@@ -89,49 +91,7 @@ const AdminActivityDashboard: FC = () => {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div className="overflow-hidden rounded-lg">
-                      <table className="min-w-full text-center">
-                        <thead className="border-b bg-gray-800">
-                          <tr>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              รูปภาพ
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              ชื่อกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              ประเภทกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              เวลาเริ่มกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              เวลาจบกิจกรรม
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-sm font-medium text-white px-6 py-4"
-                            >
-                              จัดการกิจกรรม
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
+                      <KPITable />
                     </div>
                   </div>
                 </div>

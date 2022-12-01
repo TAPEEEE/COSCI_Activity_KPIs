@@ -1,8 +1,8 @@
 import React from 'react';
-import DashboardStatCard from '../../components/DashboardStatCard';
+import DashboardStatCard from '../../components/admin/DashboardStatCard';
 import { NavLink } from 'react-router-dom';
 import Footer from '../../components/Footer';
-import AdminActivityTable from '../../components/AdminActivityTable';
+import QuickRequestTable from '../../components/admin/QuickRequestTable';
 
 type AdminDashboardProps = {
   //
@@ -27,34 +27,10 @@ const AdminDashboard: React.FC<any> = () => {
 
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
           <h1 className="font-Kanit font-medium text-2xl mx-5 my-5">
-            กิจกรรมล่าสุด
-          </h1>
-          <div className="mx-5 my-5">
-            <AdminActivityTable
-              name_event={''}
-              start_date={''}
-              end_date={''}
-              event_type={''}
-              event_img={''}
-              posted_timestamp={''}
-              event_status={false}
-            />
-          </div>
-        </div>
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 bg-white my-8 shadow-md rounded-lg">
-          <h1 className="font-Kanit font-medium text-2xl mx-5 my-5">
             คำร้องล่าสุด
           </h1>
           <div className="mx-5 my-5">
-            <AdminActivityTable
-              name_event={''}
-              start_date={''}
-              end_date={''}
-              event_type={''}
-              event_img={''}
-              posted_timestamp={''}
-              event_status={false}
-            />
+            <QuickRequestTable />
           </div>
         </div>
         <div className="mt-28">

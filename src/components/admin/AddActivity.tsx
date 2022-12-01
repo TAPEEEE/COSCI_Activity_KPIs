@@ -7,11 +7,11 @@ import {
   MouseEvent,
 } from 'react';
 
-import '../assets/css/Components.css';
+import '../../assets/css/Components.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import alertSuccess from '../utils/addActivitySuccess';
-import alertError from '../utils/addActivityError';
+import alertSuccess from '../../utils/addActivitySuccess';
+import alertError from '../../utils/addActivityError';
 import { useNavigate } from 'react-router-dom';
 import { date } from 'yup';
 

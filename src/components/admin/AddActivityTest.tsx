@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import '../assets/css/Components.css';
+import '../../assets/css/Components.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, Form, Field } from 'formik';

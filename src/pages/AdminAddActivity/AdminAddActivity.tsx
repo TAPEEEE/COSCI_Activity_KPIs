@@ -1,5 +1,5 @@
 import React from 'react';
-import AddActivity from '../../components/AddActivity';
+import AddActivity from '../../components/admin/AddActivity';
 
 type AdminAddActivityProps = {
   //

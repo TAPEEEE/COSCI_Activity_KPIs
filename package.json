@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.8.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@headlessui/react": "^1.7.3",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@types/react-highlight-words": "^0.16.4",
     "@types/redux-logger": "^3.0.9",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.12",
