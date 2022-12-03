@@ -11,13 +11,16 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminNavbar from './components/admin/AdminNavbar';
 import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import StudentHome from './pages/StudentHome';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/* <AdminNavbar /> */}
         <Routes>
           <Route path="/" element={<LoginPages />}></Route>
+          <Route path="/studenthome" element={<StudentHome />}></Route>
           <Route path="/login" element={<LoginPages />}></Route>
           <Route path="/register" element={<RegisterPages />}></Route>
           <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
