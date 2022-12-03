@@ -27,7 +27,11 @@ export default function alertTermAndConditions() {
     showCancelButton: true,
     cancelButtonText: 'ย้อนกลับ',
     confirmButtonColor: 'green',
-    confirmButtonText: '<a href="/register">ยอมรับข้อตกลง</a>',
+    confirmButtonText: 'ยอมรับข้อตกลง',
     reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = `/register`;
+    }
   });
 }
