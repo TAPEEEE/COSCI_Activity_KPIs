@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { Button } from 'antd';
-import '../../pages/LoginPages/LoginPages.css';
+import '../../pages/LoginPages/LoginPages.scss';
 import { useNavigate } from 'react-router-dom';
 import alertTermAndConditions from '../../utils/alertTeamAndConditions';
 

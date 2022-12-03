@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoginPages.css';
+import './LoginPages.scss';
 import logo from '../../assets/COSCI_logo.png';
 import LoginInterface from '../../components/auth/LoginInterface';
 import { useNavigate } from 'react-router-dom';
