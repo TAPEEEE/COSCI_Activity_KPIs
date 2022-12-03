@@ -16,11 +16,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <AdminNavbar />
         <Routes>
-          <Route path="/" element={<AdminDashboard />}></Route>
+          <Route path="/" element={<LoginPages />}></Route>
           <Route path="/login" element={<LoginPages />}></Route>
           <Route path="/register" element={<RegisterPages />}></Route>
+          <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
           <Route
             path="/admin-add-activity"
             element={<AdminAddActivity />}

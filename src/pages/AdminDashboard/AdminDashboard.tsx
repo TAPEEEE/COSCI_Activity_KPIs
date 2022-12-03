@@ -3,6 +3,7 @@ import DashboardStatCard from '../../components/admin/DashboardStatCard';
 import { NavLink } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import QuickRequestTable from '../../components/admin/QuickRequestTable';
+import AdminNavbar from '../../components/admin/AdminNavbar';
 
 type AdminDashboardProps = {
   //
@@ -11,6 +12,7 @@ type AdminDashboardProps = {
 const AdminDashboard: React.FC<any> = () => {
   return (
     <>
+      <AdminNavbar />
       <div className="h-full bg-gray-100">
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 font-Kanit">

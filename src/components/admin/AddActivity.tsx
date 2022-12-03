@@ -93,6 +93,7 @@ const AddActivity: FC = () => {
       permissions_type,
     };
     console.log(JSON.stringify(addEventData, undefined, 4));
+    console.log(`${Date.now()}-${event_img}`);
     clearData();
     alertSuccess();
     handleLink();

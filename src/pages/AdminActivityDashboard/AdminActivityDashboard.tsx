@@ -1,5 +1,4 @@
 import React, { useEffect, useState, memo, FC } from 'react';
-import AdminActivityTable from '../../components/AdminActivityTable';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
