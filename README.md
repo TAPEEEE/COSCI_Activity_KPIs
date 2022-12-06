@@ -1,4 +1,8 @@
-# COSCI_Activity_KPIs
+# COSCI_Activity_KPIs_Frontend
+This is the Final Project in Web programing, Year 3.
 
-* yarn install
-* yarn run dev
+
+ NAME  |
+ ----- |
+Nattapon Suwanno |
+Parisut Supchockpool |
