@@ -25,9 +25,3 @@ export const fetchActivityList = (): ThunkAction<
     }
   };
 };
-
-
-
-
-
-
