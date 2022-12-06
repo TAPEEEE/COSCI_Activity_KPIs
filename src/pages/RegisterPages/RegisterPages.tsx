@@ -2,20 +2,25 @@ import React, { ChangeEvent, useState } from 'react';
 import './RegisterPages.css';
 import logo from '../../assets/COSCI_logo.png';
 import RegisterInterface from '../../components/auth/RegisterInterface';
-
-type AdminUserCRUDProps = {
-  //
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { getStudentUploadList } from '../../store/studentUpload/selector';
+import { fetchStudentUploadList } from '../../store/studentUpload/thunk';
 
 const RegisterPages: React.FC<any> = () => {
   const [userID, setUserID] = useState<String>('');
+  const [isFind, setIsFine] = useState<Boolean>(false);
 
   const setUserIDHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setUserID(event.target.value);
   };
 
-  function ClickOpen() {
-    console.log(userID);
+  const dispatch = useDispatch();
+  const studnetUploadListData = useSelector(getStudentUploadList);
+
+  function UserFetch() {
+    dispatch(fetchStudentUploadList({ user_id: userID }));
+    setIsFine(true);
+    console.log(JSON.stringify(studnetUploadListData, undefined, 5));
   }
 
   return (
@@ -47,10 +52,10 @@ const RegisterPages: React.FC<any> = () => {
                 </div>
 
                 <button
-                  onClick={ClickOpen}
+                  onClick={UserFetch}
                   className="w-full text-white bg-[#006b9c] hover:bg-[#00567e] focus:ring-4font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                  สมัครสมาชิก
+                  ค้นหารหัสประจำตัว
                 </button>
                 <div className="flex items-start">
                   <a
@@ -60,6 +65,7 @@ const RegisterPages: React.FC<any> = () => {
                     กลับหน้าเข้าสู่ระบบ
                   </a>
                 </div>
+                {isFind && <RegisterInterface name={''} />}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { ServiceApi } from '../ServiceApi';
 import instance from '../instance';
-import GetActivityListResponse from '../types/GetActivityListResponse';
+import GetActivityListResponse from './types/GetActivityListResponse';
 
 export const getActivityList = async (): Promise<
   AxiosResponse<GetActivityListResponse>

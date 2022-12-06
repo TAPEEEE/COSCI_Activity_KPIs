@@ -1,4 +1,4 @@
-import { ActivityData } from '../../service/types';
+import { ActivityData } from '../../service/activity/types';
 
 export interface ActivityListState {
   activityList: ActivityData[];

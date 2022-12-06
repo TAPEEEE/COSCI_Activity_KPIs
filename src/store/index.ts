@@ -10,11 +10,13 @@ import storage from 'redux-persist/lib/storage';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { ActivityListReducer } from './activityList/store';
 import { CommonReducer } from './common/store';
+import { StudentUploadListReducer } from './studentUpload/store';
 // import { ActivityListUpdateActivityListAction } from './activityList/action';
 
 //เพิ่ม whitelist
 const appReducer = combineReducers({
   activityList: ActivityListReducer,
+  studentUploadList: StudentUploadListReducer,
   // common: CommonReducer,
 });
 
@@ -32,7 +34,7 @@ const persistedReducer = persistReducer(
   {
     key: 'rootReducer',
     storage,
-    whitelist: ['activityList'], //เพิ่ม appReducer
+    whitelist: ['activityList', 'studentUploadList'], //เพิ่ม appReducer
   },
   rootReducer,
 );

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TextField } from '@mui/material';
 import { Button } from 'antd';
-import '../../pages/LoginPages/LoginPages.css';
+import '../../pages/LoginPages/LoginPages.scss';
 
 interface userprops {
   name: string;

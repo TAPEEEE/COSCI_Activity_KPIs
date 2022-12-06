@@ -6,16 +6,11 @@ export interface ActivityData {
   event_img: string;
 }
 
-// export interface ActivityList {
-//   activityList: ActivityData[];
-// }
-
 export interface ActivityListResponseData {
   data: ActivityData[];
 }
 
 export interface ActivityList {
-  // kpi: ActivityData[];
   result: string;
   message: string;
   data: ActivityListResponseData;
