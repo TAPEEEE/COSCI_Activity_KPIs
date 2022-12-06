@@ -18,7 +18,7 @@ const AdminActivityDashboard: FC = () => {
 
   const dispatch = useDispatch();
   const activityListData = useSelector(getActivityList);
-
+  console.log(activityListData);
   useMountEffect(() => {
     dispatch(fetchActivityList());
   });

@@ -9,7 +9,6 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { ActivityListReducer } from './activityList/store';
-import { CommonReducer } from './common/store';
 import { StudentUploadListReducer } from './studentUpload/store';
 // import { ActivityListUpdateActivityListAction } from './activityList/action';
 
