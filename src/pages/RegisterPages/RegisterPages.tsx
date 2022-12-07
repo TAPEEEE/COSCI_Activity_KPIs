@@ -5,22 +5,19 @@ import RegisterInterface from '../../components/auth/RegisterInterface';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStudentUploadList } from '../../store/studentUpload/selector';
 import { fetchStudentUploadList } from '../../store/studentUpload/thunk';
-import TestRegister from '../../components/auth/TestRegister';
+import { PostStudentUploadListRequest } from '../../service';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { PostStudentUploadListRequest } from '../../service';
 
 const RegisterPages: React.FC<any> = () => {
   const [userID, setUserID] = useState<String>('');
   const [isFind, setIsFine] = useState<Boolean>(false);
-
+  const Timer = (ms) => new Promise((r) => setTimeout(r, ms));
   const dispatch = useDispatch();
   const studnetUploadListData = useSelector(getStudentUploadList);
 
   function UserFetch(id: PostStudentUploadListRequest) {
     dispatch(fetchStudentUploadList(id));
-    setIsFine(true);
-    console.log(JSON.stringify(studnetUploadListData, undefined, 5));
   }
 
   const formik = useFormik({
@@ -33,9 +30,12 @@ const RegisterPages: React.FC<any> = () => {
         .max(11, 'รหัสประจำตัวนิสิตต้องมี 11 ตัวเท่านั้น')
         .required('กรุณากรอกรหัสประจำตัวนิสิต'),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
       UserFetch(values);
+      await Timer(800);
+
+      setIsFine(true);
+      console.log(JSON.stringify(studnetUploadListData, undefined, 5));
     },
   });
 
@@ -103,7 +103,12 @@ const RegisterPages: React.FC<any> = () => {
                   </>
                 )}
 
-                {isFind && <RegisterInterface />}
+                {isFind && (
+                  <RegisterInterface
+                    object={studnetUploadListData}
+                    reLoad={isFind}
+                  />
+                )}
               </div>
             </div>
           </div>

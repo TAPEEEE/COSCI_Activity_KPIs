@@ -1,0 +1,1 @@
+export { fetchStudentRegister } from './fetchStudentRegister';

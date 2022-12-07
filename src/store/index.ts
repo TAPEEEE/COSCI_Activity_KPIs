@@ -10,12 +10,16 @@ import storage from 'redux-persist/lib/storage';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { ActivityListReducer } from './activityList/store';
 import { StudentUploadListReducer } from './studentUpload/store';
+import { StudentRegisterReducer } from './studentRegister/store';
+import { StudentLoginReducer } from './studentLogin/store';
 // import { ActivityListUpdateActivityListAction } from './activityList/action';
 
 //เพิ่ม whitelist
 const appReducer = combineReducers({
   activityList: ActivityListReducer,
   studentUploadList: StudentUploadListReducer,
+  studentRegister: StudentRegisterReducer,
+  studentLogin: StudentLoginReducer,
   // common: CommonReducer,
 });
 
@@ -33,7 +37,12 @@ const persistedReducer = persistReducer(
   {
     key: 'rootReducer',
     storage,
-    whitelist: ['activityList', 'studentUploadList'], //เพิ่ม appReducer
+    whitelist: [
+      'activityList',
+      'studentUploadList',
+      'studentRegister',
+      'studentLogin',
+    ], //เพิ่ม appReducer
   },
   rootReducer,
 );

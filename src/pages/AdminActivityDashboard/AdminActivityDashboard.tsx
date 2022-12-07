@@ -15,14 +15,12 @@ type AdminActivityDashboardProps = {
 
 const AdminActivityDashboard: FC = () => {
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
   const activityListData = useSelector(getActivityList);
-  console.log(activityListData);
+
   useMountEffect(() => {
     dispatch(fetchActivityList());
   });
-
   function handleClick() {
     navigate('/admin-add-activity');
   }
@@ -63,7 +61,7 @@ const AdminActivityDashboard: FC = () => {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div className="overflow-hidden rounded-lg">
-                      <ActivityTable />
+                      <ActivityTable object={activityListData} />
                     </div>
                   </div>
                 </div>

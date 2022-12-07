@@ -8,7 +8,7 @@ export const postStudentUploadList = async (
   body: PostStudentUploadListRequest,
 ): Promise<AxiosResponse<PostStudentUploadListResponse>> => {
   const response = await instance.post<PostStudentUploadListResponse>(
-    `${ServiceApi.USER_UPLOAD}`,
+    `${ServiceApi.STUDENT_UPLOAD}`,
     body,
   );
   return response;

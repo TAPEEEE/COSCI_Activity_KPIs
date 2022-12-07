@@ -4,16 +4,43 @@ import { Button } from 'antd';
 import '../../pages/LoginPages/LoginPages.scss';
 import { useNavigate } from 'react-router-dom';
 import alertTermAndConditions from '../../utils/alertTeamAndConditions';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { PostStudentLoginRequest } from '../../service/loginstudent/types';
+import { useDispatch } from 'react-redux';
+import { fetchStudentLogin } from '../../store/studentLogin/thunk';
 
 const LoginInterface: React.FC<any> = () => {
   let navigate = useNavigate();
   function handleClick() {
     navigate('/register');
   }
+
+  const dispatch = useDispatch();
+  function UserLogin(data: PostStudentLoginRequest) {
+    dispatch(fetchStudentLogin(data));
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      user_id: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      user_id: Yup.string()
+        .min(11, 'บัวศรีไอดีต้องมี 11 ตัวเท่านั้น')
+        .max(11, 'บัวศรีไอดีต้องมี 11 ตัวเท่านั้น')
+        .required('กรุณากรอกบัวศรีไอดี'),
+    }),
+    onSubmit: async (values) => {
+      UserLogin(values);
+    },
+  });
+
   return (
     <>
       <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 font-Kanit w-80">
-        <form className="space-y-3" action="#">
+        <form className="space-y-3" onSubmit={formik.handleSubmit}>
           <h3 className="text-xl font-medium text-gray-900 ">เข้าสู่ระบบ</h3>
           <div>
             <label className="text-sm font-medium text-gray-900 block mb-2 mt-5">
@@ -21,8 +48,11 @@ const LoginInterface: React.FC<any> = () => {
             </label>
             <input
               type="text"
-              name="text"
-              id="email"
+              name="user_id"
+              id="user_id"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.user_id}
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               placeholder="co6XXXXXXXX"
             />
@@ -35,6 +65,9 @@ const LoginInterface: React.FC<any> = () => {
               type="password"
               name="password"
               id="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
               placeholder="••••••••"
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 "
             />

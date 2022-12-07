@@ -16,8 +16,8 @@ import StudentHome from './pages/StudentHome';
 function App() {
   return (
     <div className="App">
+      {/* <PersistGate loading={null} persistor={persistor}> */}
       <BrowserRouter>
-        {/* <AdminNavbar /> */}
         <Routes>
           <Route path="/" element={<LoginPages />}></Route>
           <Route path="/studenthome" element={<StudentHome />}></Route>
@@ -48,6 +48,7 @@ function App() {
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
+      {/* </PersistGate> */}
     </div>
   );
 }

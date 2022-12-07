@@ -24,7 +24,7 @@ export const fetchStudentUploadList = (
       }
     } catch (error) {
       dispatch(updateStudentUploadList([]));
-      console.log('Error');
+      console.log('ttttt');
     }
   };
 };

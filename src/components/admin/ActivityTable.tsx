@@ -15,111 +15,53 @@ import type {
 } from 'antd/es/table/interface';
 
 import './ActivityTable.scss';
+import { useMountEffect } from '../../hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { getActivityList } from '../../service';
+import { fetchActivityList } from '../../store/activityList/thunk';
 
-interface DataType {
-  key: string;
-  activityimage: string;
-  name: string;
-  activitycategories: string[];
-  status: boolean;
+interface ActivityPropsType {
+  object: {
+    _id: string;
+    name_event: string;
+    detail_event?: string;
+    start_date?: string;
+    end_date: string;
+    posted_timestamp: string;
+    event_type: string;
+    event_img: string;
+    activity_hour: 1;
+    event_status: true;
+    permissions_type: string;
+  };
 }
 
-const TableCompo: FC = () => {
-  const data: DataType[] = [
-    {
-      key: '1',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมบำเพ็ญประโยชน์'],
-      status: true,
-    },
-    {
-      key: '2',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'Cosci Open House',
-      activitycategories: ['กิจกรรมเลือก'],
-      status: true,
-    },
-    {
-      key: '3',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมเลือก'],
-      status: false,
-    },
-    {
-      key: '4',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'COSCI Workshop',
-      activitycategories: ['กิจกรรมบังคับ'],
-      status: false,
-    },
-    {
-      key: '5',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมบังคับ'],
-      status: true,
-    },
-    {
-      key: '6',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมบำเพ็ญประโยชน์'],
-      status: true,
-    },
-    {
-      key: '7',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'Cosci Open House',
-      activitycategories: ['กิจกรรมเลือก'],
-      status: true,
-    },
-    {
-      key: '8',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมเลือก'],
-      status: false,
-    },
-    {
-      key: '9',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'COSCI Workshop',
-      activitycategories: ['กิจกรรมบังคับ'],
-      status: false,
-    },
-    {
-      key: '10',
-      activityimage:
-        'https://media.discordapp.net/attachments/789137436562685973/1037022084360048670/Component_12.png',
-      name: 'ลอยกระทง',
-      activitycategories: ['กิจกรรมบังคับ'],
-      status: true,
-    },
-  ];
+interface ActivityType {
+  _id: string;
+  name_event: string;
+  event_type: string;
+  event_img: string;
+  event_status: true;
+}
+
+const TableCompo: FC<ActivityPropsType> = (props) => {
+  const hookData = props;
+  const dataformHook = hookData.object;
+
+  console.log(JSON.stringify(dataformHook, undefined, 3));
 
   const [filteredInfo, setFilteredInfo] = useState<
     Record<string, FilterValue | null>
   >({});
-  const [sortedInfo, setSortedInfo] = useState<SorterResult<DataType>>({});
+  const [sortedInfo, setSortedInfo] = useState<SorterResult<ActivityType>>({});
 
-  const handleChange: TableProps<DataType>['onChange'] = (
+  const handleChange: TableProps<ActivityType>['onChange'] = (
     pagination,
     filters,
     sorter,
   ) => {
     setFilteredInfo(filters);
-    setSortedInfo(sorter as SorterResult<DataType>);
+    setSortedInfo(sorter as SorterResult<ActivityType>);
   };
 
   const clearAll = () => {
@@ -131,83 +73,59 @@ const TableCompo: FC = () => {
 
   const setCatFilter1 = () => {
     setFilteredInfo({
-      filteredValue: filteredInfo.activitycategories,
-      activitycategories: ['กิจกรรมเลือก'],
+      filteredValue: filteredInfo.event_type,
+      event_type: ['กิจกรรมเลือก'],
     });
     filtersActivityList('ฟิลเตอร์เป็นกิจกรรมเลือก');
   };
 
   const setCatFilter2 = () => {
     setFilteredInfo({
-      filteredValue: filteredInfo.activitycategories,
-      activitycategories: ['กิจกรรมบังคับ'],
+      filteredValue: filteredInfo.event_type,
+      event_type: ['กิจกรรมบังคับ'],
     });
     filtersActivityList('ฟิลเตอร์เป็นกิจกรรมบังคับ');
   };
 
   const setCatFilter3 = () => {
     setFilteredInfo({
-      filteredValue: filteredInfo.activitycategories,
-      activitycategories: ['กิจกรรมบำเพ็ญประโยชน์'],
+      filteredValue: filteredInfo.event_type,
+      event_type: ['กิจกรรมบำเพ็ญประโยชน์'],
     });
     filtersActivityList('ฟิลเตอร์เป็นกิจกรรมบำเพ็ญประโยชน์');
   };
 
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<ActivityType> = [
     {
       title: 'รูปภาพกิจกรรม',
-      dataIndex: 'activityimage',
-      key: 'activityimage',
-      render: (_, record) => (
-        <img className="w-2/3" src={record.activityimage} />
-      ),
+      dataIndex: 'event_img',
+      key: 'event_img',
+      render: (_, record) => <img className="w-2/3" src={record.event_img} />,
     },
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'name_event',
+      key: 'name_event',
     },
     {
       title: 'ประเภทกิจกรรม',
-      dataIndex: 'activitycategories',
-      key: 'activitycategories',
+      dataIndex: 'event_type',
+      key: 'event_type',
 
       filters: [
         { text: 'กิจกรรมเลือก', value: 'กิจกรรมเลือก' },
         { text: 'กิจกรรมบังคับ', value: 'กิจกรรมบังคับ' },
         { text: 'กิจกรรมบำเพ็ญประโยชน์', value: 'กิจกรรมบำเพ็ญประโยชน์' },
       ],
-      // render: (activitycategories: string[]) => (
-      //   <span>
-      //     {activitycategories.map((activitycategories) => {
-      //       let color = '';
-      //       if (activitycategories == 'กิจกรรมบังคับ') {
-      //         color = 'red';
-      //       } else if (activitycategories == 'กิจกรรมเลือก') {
-      //         color = 'amber';
-      //       } else {
-      //         color = 'blue';
-      //       }
-      //       return (
-      //         <div
-      //           className={`ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-${color}-200 text-${color}-700 rounded-full`}
-      //         >
-      //           {activitycategories}
-      //         </div>
-      //       );
-      //     })}
-      //   </span>
-      // ),
 
-      filteredValue: filteredInfo.activitycategories || null,
-      onFilter: (value: string, record) =>
-        record.activitycategories.includes(value),
+      filteredValue: filteredInfo.event_type || null,
+      onFilter: (value: string, record) => record.event_type.includes(value),
       ellipsis: true,
     },
     {
       title: 'สถานะ',
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'event_status',
+      key: 'event_status',
 
       filters: [
         { text: 'ดำเนินการอยู่', value: 'true' },
@@ -216,18 +134,18 @@ const TableCompo: FC = () => {
 
       render: (_, record) => (
         <div className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
-          {record.status.toString()}
+          {record.event_status.toString()}
         </div>
       ),
-      filteredValue: filteredInfo.status || null,
+      filteredValue: filteredInfo.event_status || null,
       onFilter: (value: string, record) =>
-        record.status.toString().includes(value),
+        record.event_status.toString().includes(value),
       ellipsis: true,
     },
     {
       title: 'จัดการ',
-      dataIndex: 'key',
-      key: 'key',
+      dataIndex: '_id',
+      key: '_id',
       align: 'center',
       render: (_, record) => (
         <Space size="small">
@@ -279,7 +197,7 @@ const TableCompo: FC = () => {
       <Table
         pagination={{ pageSize: 4 }}
         columns={columns}
-        dataSource={data}
+        dataSource={dataformHook}
         onChange={handleChange}
       />
     </>

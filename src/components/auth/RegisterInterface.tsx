@@ -1,23 +1,48 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMountEffect } from '../../hooks';
-import { getStudentUploadList } from '../../store/studentUpload/selector';
 import * as Yup from 'yup';
+import { PatchStudentRegisterRequest } from '../../service/registerstudent/types';
+import { CombinedState } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { StudentUploadListUpdateStudentUploadListAction } from '../../store/studentUpload/action';
+import { fetchStudentRegister } from '../../store/studentRegister/thunk';
+import { useDispatch } from 'react-redux';
 
-const RegisterInterface: FC = () => {
-  const studnetUploadListData = useSelector(getStudentUploadList);
+interface PreFilledProps {
+  object: {
+    user_id: string;
+    name: string;
+    major: string;
+    teacher: string;
+    register_check: boolean;
+  };
+  reLoad: boolean;
+}
+
+const RegisterInterface: FC<PreFilledProps> = (props) => {
+  const dataHook = props;
+  const [reload, setReload] = useState<boolean>(false);
+
+  useEffect(() => {
+    setReload(dataHook.reLoad);
+  });
+
+  const dispatch = useDispatch();
+  function UserRegister(data: PatchStudentRegisterRequest) {
+    dispatch(fetchStudentRegister(data));
+  }
+
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const formik = useFormik({
     initialValues: {
-      name: 'Nattapon',
+      name: dataHook.object.name,
       password: '',
       confirmpassword: '',
-      student_id: '',
-      teacher: '',
-      major: '',
+      student_id: dataHook.object.user_id,
+      teacher: dataHook.object.teacher,
+      major: dataHook.object.major,
       email: '',
       tel: '',
     },
@@ -42,6 +67,7 @@ const RegisterInterface: FC = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
+      UserRegister(values);
     },
   });
 
@@ -188,3 +214,17 @@ const RegisterInterface: FC = () => {
 };
 
 export default RegisterInterface;
+function dispatch(
+  arg0: ThunkAction<
+    void,
+    CombinedState<{
+      activityList: never;
+      studentUploadList: never;
+      studentRegister: never;
+    }>,
+    void,
+    StudentUploadListUpdateStudentUploadListAction
+  >,
+) {
+  throw new Error('Function not implemented.');
+}
