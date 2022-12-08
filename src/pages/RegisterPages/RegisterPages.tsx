@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import './RegisterPages.css';
+import './RegisterPages.scss';
 import logo from '../../assets/COSCI_logo.png';
 import RegisterInterface from '../../components/auth/RegisterInterface';
 import { useDispatch, useSelector } from 'react-redux';

@@ -12,6 +12,8 @@ import AdminNavbar from './components/admin/AdminNavbar';
 import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StudentHome from './pages/StudentHome';
+import TeacherRegisterPages from './pages/TeacherRegisterPage';
+import TeacherLoginPages from './pages/TeacherLoginPages';
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
           <Route path="/studenthome" element={<StudentHome />}></Route>
           <Route path="/login" element={<LoginPages />}></Route>
           <Route path="/register" element={<RegisterPages />}></Route>
+          <Route
+            path="/teacher-register"
+            element={<TeacherRegisterPages />}
+          ></Route>
+          <Route path="/teacher-login" element={<TeacherLoginPages />}></Route>
+
           <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
           <Route
             path="/admin-add-activity"

@@ -15,7 +15,7 @@ export const TeacherRegisterReducer: Reducer<
 > = (state = initialState, action) => {
   switch (action.type) {
     case TeacherRegisterActionType.UpdateTeacherRegister:
-      return { ...state, teacherUploadList: action.payload.teacherRegister };
+      return { ...state, teacherRegister: action.payload.teacherRegister };
     default:
       return state;
   }

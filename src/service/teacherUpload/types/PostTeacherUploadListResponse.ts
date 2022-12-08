@@ -1,8 +1,9 @@
 export interface TeacherUploadData {
   user_id: string;
   name: string;
-  major: string;
-  teacher: string;
+  role: string;
+  email: string;
+  tel: string;
   register_check: string;
 }
 

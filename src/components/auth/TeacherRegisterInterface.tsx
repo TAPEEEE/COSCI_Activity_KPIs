@@ -1,19 +1,17 @@
 import { FC, memo, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { PatchStudentRegisterRequest } from '../../service/registerstudent/types';
-import { CombinedState } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-import { StudentUploadListUpdateStudentUploadListAction } from '../../store/studentUpload/action';
-import { fetchStudentRegister } from '../../store/studentRegister/thunk';
 import { useDispatch } from 'react-redux';
+import { PatchTeacherRegisterRequest } from '../../service/registerteacher/types';
+import { fetchTeacherRegister } from '../../store/teacherRegister/thunk';
 
 interface PreFilledProps {
   object: {
     user_id: string;
     name: string;
-    major: string;
-    teacher: string;
+    role: string;
+    email: string;
+    tel: string;
     register_check: boolean;
   };
   reLoad: boolean;
@@ -28,8 +26,8 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
   });
 
   const dispatch = useDispatch();
-  function UserRegister(data: PatchStudentRegisterRequest) {
-    dispatch(fetchStudentRegister(data));
+  function UserRegister(data: PatchTeacherRegisterRequest) {
+    dispatch(fetchTeacherRegister(data));
   }
 
   const phoneRegExp =
@@ -37,14 +35,13 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
 
   const formik = useFormik({
     initialValues: {
+      user_id: dataHook.object.user_id,
       name: dataHook.object.name,
       password: '',
       confirmpassword: '',
-      student_id: dataHook.object.user_id,
-      teacher: dataHook.object.teacher,
-      major: dataHook.object.major,
-      email: '',
-      tel: '',
+      role: dataHook.object.role,
+      email: dataHook.object.email,
+      tel: dataHook.object.tel,
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -75,16 +72,16 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
     <form onSubmit={formik.handleSubmit}>
       <div>
         <label className="text-sm font-medium text-gray-900 block mb-1 mt-5">
-          รหัสประจำตัวนิสิต
+          ชื่อผู้ใช้
         </label>
         <input
           type="text"
-          id="student_id"
-          name="student_id"
+          id="user_id"
+          name="user_id"
           disabled
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.student_id}
+          value={formik.values.user_id}
           className="bg-gray-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
         />
       </div>
@@ -105,50 +102,50 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
       </div>
       <div>
         <label className="text-sm font-medium text-gray-900 block mb-1 mt-5">
-          วิชาเอก
+          ตำแหน่ง
         </label>
         <input
           type="text"
-          id="major"
-          name="major"
+          id="role"
+          name="role"
           disabled
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.major}
+          value={formik.values.role}
           className="bg-gray-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
         />
       </div>
       <div>
         <label className="text-sm font-medium text-gray-900 block mb-1 mt-5">
-          อาจารย์ที่ปรึกษา
+          Email
         </label>
         <input
           type="text"
-          id="teacher"
-          name="teacher"
+          id="email"
+          name="email"
           disabled
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.teacher}
+          value={formik.values.email}
           className="bg-gray-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
         />
       </div>
       <div>
         <label className="text-sm font-medium text-gray-900 block mb-1 mt-5">
-          Email (g.swu.ac.th เท่านั้น)
+          เบอร์โทรศัพท์
         </label>
         <input
           placeholder="example@g.sw.ac.th"
           type="text"
-          id="email"
-          name="email"
+          id="tel"
+          name="tel"
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.tel}
         />
-        {formik.touched.email && formik.errors.email ? (
-          <div className="text-red-600 text-sm mt-1">{formik.errors.email}</div>
+        {formik.touched.tel && formik.errors.tel ? (
+          <div className="text-red-600 text-sm mt-1">{formik.errors.tel}</div>
         ) : null}
       </div>
       <div>
@@ -189,23 +186,7 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
           </div>
         ) : null}
       </div>
-      <div>
-        <label className="text-sm font-medium text-gray-900 block mb-1 mt-5 ">
-          เบอร์โทรศัพท์
-        </label>
-        <input
-          type="text"
-          id="tel"
-          name="tel"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.tel}
-          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
-        />
-        {formik.touched.tel && formik.errors.tel ? (
-          <div className="text-red-600 text-sm mt-1">{formik.errors.tel}</div>
-        ) : null}
-      </div>
+
       <button className="w-full mt-5 text-white bg-[#006b9c] hover:bg-[#00567e] focus:ring-4font-medium rounded-lg text-sm px-5 py-2.5 text-center">
         สมัครสมาชิก
       </button>
