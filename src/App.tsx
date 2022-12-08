@@ -14,8 +14,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StudentHome from './pages/StudentHome';
 import TeacherRegisterPages from './pages/TeacherRegisterPage';
 import TeacherLoginPages from './pages/TeacherLoginPages';
+import { store } from './store';
+import OTPPages from './pages/OTPPages';
 
 function App() {
+  // const userToken = getAuthUserToken(store.getState());
+
   return (
     <div className="App">
       {/* <PersistGate loading={null} persistor={persistor}> */}
@@ -25,6 +29,7 @@ function App() {
           <Route path="/studenthome" element={<StudentHome />}></Route>
           <Route path="/login" element={<LoginPages />}></Route>
           <Route path="/register" element={<RegisterPages />}></Route>
+          <Route path="/otpverify" element={<OTPPages />}></Route>
           <Route
             path="/teacher-register"
             element={<TeacherRegisterPages />}

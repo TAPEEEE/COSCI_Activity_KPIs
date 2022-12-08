@@ -5,7 +5,8 @@ export interface StudentLoginState {
 }
 
 export enum StudentLoginActionType {
-  UpdateStudentLogin = 'STUDENTREGISTER/UPDATE_LIST',
+  UpdateStudentLogin = 'STUDENTLOGIN/UPDATE_LIST',
+  // UpdateAuthUserToken = 'AUTH/UPDATE_USER_TOKEN',
 }
 
 export interface StudentLoginUpdateStudentLoginAction {
@@ -23,3 +24,10 @@ export const updateStudentLogin = (
     payload: { studentLogin },
   };
 };
+
+// export const updateAuthUserToken = (token: string) => {
+//   return {
+//     type: StudentLoginActionType.UpdateAuthUserToken,
+//     payload: { token },
+//   };
+// };

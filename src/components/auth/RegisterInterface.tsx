@@ -7,6 +7,7 @@ import { ThunkAction } from 'redux-thunk';
 import { StudentUploadListUpdateStudentUploadListAction } from '../../store/studentUpload/action';
 import { fetchStudentRegister } from '../../store/studentRegister/thunk';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 interface PreFilledProps {
   object: {
@@ -22,6 +23,9 @@ interface PreFilledProps {
 const RegisterInterface: FC<PreFilledProps> = (props) => {
   const dataHook = props;
   const [reload, setReload] = useState<boolean>(false);
+  const Timer = (ms: number | undefined) =>
+    new Promise((r) => setTimeout(r, ms));
+  let navigate = useNavigate();
 
   useEffect(() => {
     setReload(dataHook.reLoad);
@@ -65,9 +69,11 @@ const RegisterInterface: FC<PreFilledProps> = (props) => {
         .min(10, 'กรอกเบอร์โทรศัพท์ไม่ถูกต้อง')
         .max(10, 'กรอกเบอร์โทรศัพท์ไม่ถูกต้อง'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
       UserRegister(values);
+      await Timer(1000);
+      navigate('/otpverify');
     },
   });
 
@@ -214,17 +220,3 @@ const RegisterInterface: FC<PreFilledProps> = (props) => {
 };
 
 export default RegisterInterface;
-function dispatch(
-  arg0: ThunkAction<
-    void,
-    CombinedState<{
-      activityList: never;
-      studentUploadList: never;
-      studentRegister: never;
-    }>,
-    void,
-    StudentUploadListUpdateStudentUploadListAction
-  >,
-) {
-  throw new Error('Function not implemented.');
-}

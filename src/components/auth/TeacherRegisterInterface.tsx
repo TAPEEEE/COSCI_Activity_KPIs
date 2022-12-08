@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { PatchTeacherRegisterRequest } from '../../service/registerteacher/types';
 import { fetchTeacherRegister } from '../../store/teacherRegister/thunk';
+import { useNavigate } from 'react-router-dom';
 
 interface PreFilledProps {
   object: {
@@ -19,7 +20,10 @@ interface PreFilledProps {
 
 const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
   const dataHook = props;
+  const Timer = (ms: number | undefined) =>
+    new Promise((r) => setTimeout(r, ms));
   const [reload, setReload] = useState<boolean>(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     setReload(dataHook.reLoad);
@@ -62,9 +66,11 @@ const TeacherRegisterInterface: FC<PreFilledProps> = (props) => {
         .min(10, 'กรอกเบอร์โทรศัพท์ไม่ถูกต้อง')
         .max(10, 'กรอกเบอร์โทรศัพท์ไม่ถูกต้อง'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
       UserRegister(values);
+      await Timer(1000);
+      navigate('/otpverify');
     },
   });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { TextField } from '@mui/material';
 import { Button } from 'antd';
 import '../../pages/LoginPages/LoginPages.scss';
@@ -12,9 +12,7 @@ import { fetchTeacherLogin } from '../../store/teacherLogin/thunk';
 
 const TeacherLoginInterface: FC = () => {
   let navigate = useNavigate();
-  function handleClick() {
-    navigate('/register');
-  }
+  const Timer = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const dispatch = useDispatch();
   function UserLogin(data: PostTeacherLoginRequest) {
@@ -31,6 +29,8 @@ const TeacherLoginInterface: FC = () => {
     }),
     onSubmit: async (values) => {
       UserLogin(values);
+      await Timer(1000);
+      navigate('/admin-dashboard');
     },
   });
 

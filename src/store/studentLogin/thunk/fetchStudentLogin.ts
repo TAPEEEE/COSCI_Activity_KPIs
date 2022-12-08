@@ -16,6 +16,9 @@ export const fetchStudentLogin = (
       console.log(response);
       if (response.status === 200) {
         dispatch(updateStudentLogin(response.data.data.data));
+        // dispatch(
+        //   updateAuthUserToken(response.headers.authorization),
+        // );
       }
     } catch (error) {
       dispatch(updateStudentLogin([]));

@@ -12,10 +12,8 @@ import { fetchStudentLogin } from '../../store/studentLogin/thunk';
 
 const LoginInterface: React.FC<any> = () => {
   let navigate = useNavigate();
-  function handleClick() {
-    navigate('/register');
-  }
 
+  const Timer = (ms) => new Promise((r) => setTimeout(r, ms));
   const dispatch = useDispatch();
   function UserLogin(data: PostStudentLoginRequest) {
     dispatch(fetchStudentLogin(data));
@@ -34,6 +32,8 @@ const LoginInterface: React.FC<any> = () => {
     }),
     onSubmit: async (values) => {
       UserLogin(values);
+      await Timer(1000);
+      navigate('/studenthome');
     },
   });
 
