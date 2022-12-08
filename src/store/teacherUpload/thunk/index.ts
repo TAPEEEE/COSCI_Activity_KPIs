@@ -1,0 +1,1 @@
+export { fetchTeacherUploadList } from './fetchTeacherUploadList';

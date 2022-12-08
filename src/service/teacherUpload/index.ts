@@ -1,0 +1,1 @@
+export { postTeacherUploadList } from './postTeacherUploadList';

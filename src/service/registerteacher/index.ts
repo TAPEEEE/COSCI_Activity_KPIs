@@ -1,0 +1,1 @@
+export { patchTeacherRegister } from './patchTeacherRegister';

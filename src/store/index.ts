@@ -12,6 +12,9 @@ import { ActivityListReducer } from './activityList/store';
 import { StudentUploadListReducer } from './studentUpload/store';
 import { StudentRegisterReducer } from './studentRegister/store';
 import { StudentLoginReducer } from './studentLogin/store';
+import { TeacherUploadListReducer } from './teacherUpload/store';
+import { TeacherRegisterReducer } from './teacherRegister/store';
+import { TeacherLoginReducer } from './teacherLogin/store';
 // import { ActivityListUpdateActivityListAction } from './activityList/action';
 
 //เพิ่ม whitelist
@@ -20,6 +23,9 @@ const appReducer = combineReducers({
   studentUploadList: StudentUploadListReducer,
   studentRegister: StudentRegisterReducer,
   studentLogin: StudentLoginReducer,
+  teacherUploadList: TeacherUploadListReducer,
+  teacherRegister: TeacherRegisterReducer,
+  teacherLogin: TeacherLoginReducer,
   // common: CommonReducer,
 });
 
@@ -42,6 +48,9 @@ const persistedReducer = persistReducer(
       'studentUploadList',
       'studentRegister',
       'studentLogin',
+      'teacherUploadList',
+      'teacherRegister',
+      'teacherLogin',
     ], //เพิ่ม appReducer
   },
   rootReducer,

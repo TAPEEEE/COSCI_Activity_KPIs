@@ -1,0 +1,1 @@
+export { postTeacherLogin } from './postTeacherLogin';
