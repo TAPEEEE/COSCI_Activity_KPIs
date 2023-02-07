@@ -49,7 +49,7 @@ const RegisterPages: React.FC<any> = () => {
         />
         <div className="my-auto mt-16 mb-28 mx-3">
           <div className="flex justify-center">
-            <div className="bg-white shadow-md border border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 font-Kanit w-96 lg:w-96 md:max-w-sm sm:max-w-sm">
+            <div className="mt-5 bg-white shadow-md border border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 font-Kanit w-96 lg:w-96 md:max-w-sm sm:max-w-sm">
               <div className="space-y-5">
                 <h3 className="text-xl font-medium text-gray-900 ">
                   สมัครสมาชิก

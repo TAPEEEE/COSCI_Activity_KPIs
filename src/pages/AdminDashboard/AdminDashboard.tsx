@@ -12,6 +12,7 @@ type AdminDashboardProps = {
 const AdminDashboard: React.FC<any> = () => {
   return (
     <>
+      <AdminNavbar />
       {/* <AdminNavbar /> */}
       <div className="h-full bg-gray-100">
         <header className="bg-white shadow">

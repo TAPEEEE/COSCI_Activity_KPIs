@@ -47,7 +47,7 @@ const StudentHome: React.FC<any> = () => {
         <div className="my-auto mt-28">
           <div className="flex justify-center">
             <div className="mx-3">
-              <div className="mx-auto max-w-6xl  bg-white my-8 shadow-md rounded-lg">
+              <div className="mx-12 max-w-6xl  bg-white my-8 shadow-md rounded-lg">
                 <div className="bg-[#1f2937] rounded-t-lg">
                   <div className="flex justify-between ">
                     <h1 className="font-Kanit text-white font-medium text-xl mx-4 my-4 pl-2">

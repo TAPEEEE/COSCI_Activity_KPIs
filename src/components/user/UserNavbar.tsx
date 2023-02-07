@@ -6,8 +6,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 const navigation = [
   { name: 'หน้าแรก', href: '/' },
   { name: 'ประวัติคำร้อง', href: '/admin-request-dashboard' },
-  { name: 'ยื่นคำร้อง', href: '/admin-activity-dashboard' },
-  { name: 'จัดการผู้ใช้งาน', href: '/admin-user-crud' },
+  { name: 'ติดตามสถานะคำร้อง', href: '/admin-activity-dashboard' },
+  { name: 'คำร้องย้อนหลัง', href: '/admin-user-crud' },
 ];
 
 function classNames(...classes: string[]) {
